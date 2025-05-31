@@ -1,28 +1,27 @@
-# Импорт необходимых модулей и данных для запроса
 import requests
 import configuration
 import data
 
-def post_products_kits(products_ids):
-    """
-    Функция для отправки POST-запроса с ID продуктов
-    Возвращает ответ от сервера
-    """
-    # Формируем тело запроса
-    request_body = {
-        "product_ids": products_ids
-    }
+def post_new_user():
+    return requests.post(configuration.URL_SERVICE + configuration.CREATE_USER_PATH,
+                         json=data.user_body,
+                         headers=data.headers_user)
+
+def post_new_client_kit(body):
+    if data.AUTH_TOKEN == "":
+        response = post_new_user()
+        data.AUTH_TOKEN = response.json()['authToken']
+    headers_kits = {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + data.AUTH_TOKEN
+        }
+    return requests.post(configuration.URL_SERVICE + configuration.MAIN_KITS,
+                         json=body,
+                         headers=headers_kits)
+
     
-    # Отправляем POST-запрос
-    return requests.post(
-        configuration.URL_SERVICE + configuration.PRODUCTS_KITS_PATH,
-        json=request_body,
-        headers=data.headers
-    )
 
-# Вызов функции с передачей списка ID продуктов из файла data.py
-response = post_products_kits(data.products_ids)
+response = post_new_client_kit(data.body)
 
-# Вывод HTTP-статус кода ответа и тела ответа в формате JSON
-print("Status Code:", response.status_code)
-print("Response JSON:", response.json())
+print(response.status_code)
+
