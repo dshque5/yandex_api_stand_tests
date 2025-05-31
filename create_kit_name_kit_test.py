@@ -1,22 +1,22 @@
 import sender_stand_request
 import data
 
+# Создание тела запроса для набора
 def get_kit_body(name):
-    """Создание тела запроса для набора"""
     return {"name": name}
 
+# Пустое тело запроса
 def empty_body():
-    """Пустое тело запроса"""
     return {}
 
+# Проверка успешного создания набора
 def positive_assert(kit_body):
-    """Проверка успешного создания набора"""
     response = sender_stand_request.post_new_client_kit(kit_body)
     assert response.status_code == 201, f"Ожидался код 201, получен {response.status_code}"
     assert "name" in response.json(), "В ответе отсутствует поле 'name'"
 
+# Проверка ошибки 400
 def negative_assert_code_400(kit_body):
-    """Проверка ошибки 400"""
     response = sender_stand_request.post_new_client_kit(kit_body)
     assert response.status_code == 400, f"Ожидался код 400, получен {response.status_code}"
 
