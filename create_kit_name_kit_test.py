@@ -12,13 +12,13 @@ def empty_body():
 # Проверка успешного создания набора
 def positive_assert(kit_body):
     response = sender_stand_request.post_new_client_kit(kit_body)
-    assert response.status_code == 201, f"Ожидался код 201, получен {response.status_code}"
-    assert "name" in response.json(), "В ответе отсутствует поле 'name'"
+    assert response.status_code == 201
+    assert "name" in response.json()
 
-# Проверка ошибки 400
+# Проверка отображения ошибки 400
 def negative_assert_code_400(kit_body):
     response = sender_stand_request.post_new_client_kit(kit_body)
-    assert response.status_code == 400, f"Ожидался код 400, получен {response.status_code}"
+    assert response.status_code == 400
 
 # Тест 1. Успешное создание набора (1 символ)
 def test_create_kit_name_one_symbol():

@@ -3,22 +3,19 @@ import configuration
 import data
 
 # Создание нового пользователя и получение токена
-
 def post_new_user():
-    response = requests.post(
+    return requests.post(
         configuration.URL_SERVICE + configuration.CREATE_USER_PATH,
         json=data.user_body,
         headers=data.headers_user
     )
-    if response.status_code == 201:
-        return response.json()['authToken']
-    raise Exception(f"Ошибка создания пользователя: {response.status_code}")
 
 # Создание нового набора для пользователя
-
 def post_new_client_kit(kit_body):
     if not data.AUTH_TOKEN:
-        data.AUTH_TOKEN = post_new_user()
+        user_response = post_new_user()
+        if user_response.status_code == 201:
+            data.AUTH_TOKEN = user_response.json().get('authToken')
     
     headers = {
         "Content-Type": "application/json",
