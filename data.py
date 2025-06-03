@@ -1,10 +1,11 @@
 AUTH_TOKEN = ""
 
 headers_user = {
-    "Content-Type": "application/json"
+    "Content-Type": 
+    "application/json"
 }
 
-if AUTH_TOKEN:  
+if AUTH_TOKEN:
     headers_user["Authorization"] = f"Bearer {AUTH_TOKEN}"
 
 user_body = {
