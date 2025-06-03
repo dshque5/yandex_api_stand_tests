@@ -1,5 +1,6 @@
+# Импортируем модуль sender_stand_request, содержащий функции для отправки HTTP-запросов к API.
 import sender_stand_request
-import data
+
 
 # Создание тела запроса для набора
 def get_kit_body(name):
