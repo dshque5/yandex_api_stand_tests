@@ -1,5 +1,6 @@
 # URL_SERVICE хранит базовый URL веб-сервиса
-URL_SERVICE = "https://02489289-ec41-4c64-9108-766a6eb0b48b.serverhub.praktikum-services.ru"
+# В кавычки вводим актуальный url-адрес веб-сервера. Не забудь удалить слеш (/) в конце строки.
+URL_SERVICE = "https://a3b9847c-acb4-42ee-ae43-c6a82f9f3393.serverhub.praktikum-services.ru"
 
 # DOC_PATH содержит путь к документации веб-сервиса
 DOC_PATH = "/docs/"

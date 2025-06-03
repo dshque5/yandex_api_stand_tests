@@ -1,7 +1,7 @@
 AUTH_TOKEN = ""
 
 headers_user = {
-    "Content-Type":"application/json"
+    "Content-Type": "application/json"
 }
 
 if AUTH_TOKEN:
